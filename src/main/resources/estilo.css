@@ -1,0 +1,105 @@
+/* Configuração global da janela */
+.root {
+    -fx-background-color: #F8F9FA; /* Fundo cinza bem claro, moderno */
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* Estilização de todos os títulos (Labels) */
+.label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2D3748; /* Cinza escuro elegante */
+}
+
+/* Customização dos campos de texto e ComboBoxes */
+.text-field, .combo-box, .date-picker, .spinner {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E0;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px;
+}
+
+/* Efeito ao clicar/focar em um campo */
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #3182CE; /* Borda azul ao focar */
+    -fx-border-width: 1.5px;
+}
+
+/* Botões rápidos de cadastro "+" */
+.button-add {
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #4A5568;
+    -fx-font-weight: bold;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+.button-add:hover {
+    -fx-background-color: #CBD5E0;
+}
+
+/* Botão 1. Gerar PDF (Verde) */
+.btn-gerar {
+    -fx-background-color: #2F855A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+.btn-gerar:hover {
+    -fx-background-color: #22543D;
+}
+
+/* Botão 2. Visualizar (Azul) */
+.btn-visualizar {
+    -fx-background-color: #2B6CB0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+.btn-visualizar:hover {
+    -fx-background-color: #1A365D;
+}
+
+/* Botão 3. Imprimir (Laranja) */
+.btn-imprimir {
+    -fx-background-color: #DD6B20;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+.btn-imprimir:hover {
+    -fx-background-color: #9C4221;
+}
+
+/* Estilo para botões desativados (cinzas) */
+.button:disabled {
+    -fx-opacity: 0.4;
+    -fx-cursor: default;
+}
+
+/* Customização para os botões que possuem ícones + texto */
+.btn-gerar, .btn-visualizar, .btn-imprimir {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px; /* Dá mais espaço para o ícone respirar */
+}
+
+/* Deixa o ícone de "+" centralizado e maior dentro do botão de cadastro */
+.button-add {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #4A5568;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-min-width: 32px; /* Garante que o botão do "+" seja perfeitamente quadrado */
+}
