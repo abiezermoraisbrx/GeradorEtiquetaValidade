@@ -11,6 +11,7 @@ public class GeradorEtiquetaValidade extends Application {
         // INICIALIZA O SISTEMA DE LOGS DO PROJETO
         LogConfig.configurarLog();
         
+        FabricaConexao.inicializarBanco(); // <-- NOVA ATUALIZAÇÃO: Garante o banco SQL ativo
         // 1. Instancia a Janela/Layout (View)
         GeradorEtiquetaView view = new GeradorEtiquetaView();
         

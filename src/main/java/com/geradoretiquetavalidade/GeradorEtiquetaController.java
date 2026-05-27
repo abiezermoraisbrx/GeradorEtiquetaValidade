@@ -74,7 +74,8 @@ private void configurarFocoAoPremerEnter(Node atual, Node seguinte) {
     
     
     private void inicializarDadosTela() {
-        atualizarCombo(view.comboProduto, "PRODUTO");
+        view.comboProduto.getItems().addAll(EtiquetaDAO.carregarProdutos());
+        FxUtil.habilitarAutocomplete(view.comboProduto);
         atualizarCombo(view.comboCategoria, "CATEGORIA");
         atualizarCombo(view.comboEstocagem, "ESTOCAGEM");
         atualizarCombo(view.comboResponsavel, "RESPONSAVEL");
@@ -82,13 +83,13 @@ private void configurarFocoAoPremerEnter(Node atual, Node seguinte) {
 
     private void vincularEventos() {
         // Escuta a seleção do produto para trazer a validade automática
-        view.comboProduto.setOnAction(e -> {
-            String produtoSelecionado = view.comboProduto.getValue();
+            view.comboProduto.setOnAction(e -> {
+        String produtoSelecionado = view.comboProduto.getValue();
             if (produtoSelecionado != null) {
-                String dias = GerenciadorDados.buscarDiasDoProduto(produtoSelecionado);
-                view.txtDiasValidade.setText(dias);
-            }
-        });
+        String dias = EtiquetaDAO.buscarDiasDoProduto(produtoSelecionado);
+            view.txtDiasValidade.setText(dias);
+        }
+    });
 
         // Eventos dos botões de ação principais
         view.btnGerar.setOnAction(e -> acaoGerarPdf());
@@ -103,10 +104,10 @@ private void configurarFocoAoPremerEnter(Node atual, Node seguinte) {
     }
 
     private void atualizarCombo(ComboBox<String> combo, String tipo) {
-        combo.getItems().clear();
-        combo.getItems().addAll(GerenciadorDados.carregarDadosPorTipo(tipo));
-        FxUtil.habilitarAutocomplete(combo); 
-    }
+    combo.getItems().clear();
+    combo.getItems().addAll(EtiquetaDAO.carregarDadosPorTipo(tipo));
+    FxUtil.habilitarAutocomplete(combo); 
+}
 
     private void acaoGerarPdf() {
     if (view.comboProduto.getEditor().getText().trim().isEmpty() || view.txtDiasValidade.getText().trim().isEmpty() || 
@@ -203,10 +204,13 @@ private void configurarFocoAoPremerEnter(Node atual, Node seguinte) {
             
             Optional<String> resultadoDias = dialogDias.showAndWait();
             if (resultadoDias.isPresent() && !resultadoDias.get().trim().isEmpty()) {
-                GerenciadorDados.salvarDado("PRODUTO", nomeProd + ";" + resultadoDias.get().trim());
+                //GerenciadorDados.salvarDado("PRODUTO", nomeProd + ";" + resultadoDias.get().trim());
+                EtiquetaDAO.salvarProduto(nomeProd, Integer.parseInt(resultadoDias.get().trim()));
                 atualizarCombo(view.comboProduto, "PRODUTO");
-                view.comboProduto.setValue(nomeProd);
-                view.txtDiasValidade.setText(resultadoDias.get().trim());
+                view.comboProduto.getItems().clear();
+                view.comboProduto.getItems().addAll(EtiquetaDAO.carregarProdutos());
+                //view.comboProduto.setValue(nomeProd);
+                //view.txtDiasValidade.setText(resultadoDias.get().trim());
             }
         }
     }
@@ -220,7 +224,8 @@ private void configurarFocoAoPremerEnter(Node atual, Node seguinte) {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(valor -> {
             if (!valor.trim().isEmpty()) {
-                GerenciadorDados.salvarDado(tipo, valor.trim());
+                //GerenciadorDados.salvarDado(tipo, valor.trim());
+                EtiquetaDAO.salvarDadoAuxiliar(tipo, valor.trim());
                 atualizarCombo(combo, tipo);
                 combo.setValue(valor.trim());
             }
